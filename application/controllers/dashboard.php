@@ -4,19 +4,13 @@
         
         public function index()
         {
+            $data['barang'] = $this->model_barang->tampil_data()->result();
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');
-            $this->load->view('dashboard');
+            $this->load->view('dashboard', $data);
             $this->load->view('templates/footer');
         }
 
-        public function error_404()
-        {
-            $this->load->view('templates/header');
-            $this->load->view('templates/sidebar');
-            $this->load->view('error_404');
-            $this->load->view('templates/footer');
-        }
 
 
     }
