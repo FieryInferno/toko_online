@@ -31,15 +31,15 @@
         <div class="row text-center card-jarak">
             <?php foreach ($barang as $brg) : ?>
             <!-- Cards -->
-            <div class="card m-auto d-flex justify-content-center align-items-center" style="width: 15.5rem;">
-                <div class="wrapper-img"><img src=" <?php echo base_url().'/uploads/'.$brg->gambar ?> " class="card-img-top" alt="..."></div>
-                <div class="card-body">
+            <div class="card shadow ml-3 mr-2 d-flex justify-content-center align-items-center  m-auto" style="width: 14rem;">
+                <div class="wrapper-img"><img src=" <?php echo base_url().'/uploads/'.$brg->gambar_brg ?> " class="card-img-top" alt="..."></div>
+                <div class="card-body card-tengah">
                     <h5 class="card-title mb-1"> <?php echo $brg->nama_brg ?> </h5>
                     <small> <?php echo $brg->keterangan ?> </small>
                     <br>
-                    <span class="badge badge-success mb-3">Rp <?php echo $brg->harga ?></span>
-                    <a href="#" class="btn btn-sm btn-primary mb-2">Tambah ke Keranjang</a>
-                    <a href="#" class="btn btn-sm btn-info pl-4 pr-4">Detail</a>
+                    <span class="badge badge-success mb-2"> Rp <?php echo $brg->harga ?></span>
+                    <a href="#" class="btn btn-sm btn-primary mb-1 btn-keranjang">Tambah ke Keranjang</a>
+                    <a href="#" class="btn btn-sm btn-info pl-4 pr-4 btn-detail">Detail</a>
                 </div>
             </div>
             <?php endforeach; ?>
