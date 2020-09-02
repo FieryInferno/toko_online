@@ -41,10 +41,10 @@
                                     <button type="button" class="btn btn-success"><i class="fas fa-search-plus"> </i></button>
                                 </td>
                                 <td class="text-center">
-                                    <button type="button" class="btn btn-primary"><i class="fas fa-edit"></i></button>
+                                    <?php echo anchor('admin/data_barang/edit/' .$brg->id_brg, '<button type="button" class="btn btn-primary"><i class="fas fa-edit"></i></button>') ?>
                                 </td>
                                 <td class="text-center">
-                                    <button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                    <?php echo anchor('admin/data_barang/hapus/' .$brg->id_brg, '<button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>') ?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -101,9 +101,6 @@
                 </div>
             </div>
         </div>
-
-
-
 
     </div>
     <!-- /.container-fluid -->

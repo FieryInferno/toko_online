@@ -9,14 +9,30 @@
             $this->db->order_by("id_brg", "desc");
             $query = $this->db->get();
             return $query;
-            // return $query->result();
-            // return $this->db->select()->from('tb_barang')->order_by('id', 'desc');
             // return $this->db->get('tb_barang');
         }
 
         public function tambah_barang($data, $table)
         {
             $this->db->insert($table, $data);
+        }
+
+        public function edit_barang($where, $table)
+        {
+            // mengembalikan nilai yang didapat dari get
+            return $this->db->get_where($table, $where);
+        }
+
+        public function update_data($where, $data, $table)
+        {
+            $this->db->where($where);
+            $this->db->update($table, $data);
+        }
+
+        public function hapus_data($where, $table)
+        {
+            $this->db->where($where);
+            $this->db->delete($table);
         }
     }
     
