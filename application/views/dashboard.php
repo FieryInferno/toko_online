@@ -38,7 +38,7 @@
                     <small> <?php echo $brg->keterangan ?> </small>
                     <br>
                     <span class="badge badge-success mb-2"> Rp <?php echo $brg->harga ?></span>
-                    <a href="#" class="btn btn-sm btn-primary mb-1 btn-keranjang">Tambah ke Keranjang</a>
+                    <?php echo anchor('dashboard/tambah_kk/'.$brg->id_brg, ' <div class="btn btn-sm btn-primary mb-1 btn-keranjang">Tambah ke Keranjang</div>')?>
                     <a href="#" class="btn btn-sm btn-info pl-4 pr-4 btn-detail">Detail</a>
                 </div>
             </div>
