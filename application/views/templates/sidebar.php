@@ -22,7 +22,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-    <a class="nav-link" href="index.html">
+    <a class="nav-link" href="<?php echo base_url() ?>">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
     </li>
@@ -127,14 +127,11 @@
             </li>
 
             <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
-                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-cart-plus"></i>
-                <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">
+            <li class="nav-item">
+                <a href="dashboard/detail_keranjang" class="nav-link active">
+                    <i class="fas fa-cart-plus"></i><span class="badge badge-danger badge-counter">
                     <?php $keranjang = $this->cart->total_items() ?>
-                    <?php echo $keranjang ?>
-                </span>
+                    <?php echo $keranjang ?></span>
                 </a>
             </li>
 

@@ -43,7 +43,8 @@
 
             if($result->num_rows() > 0){
                 return $result->row();
-            }else{
+            }
+            else{
                 return array();
             }
         }
