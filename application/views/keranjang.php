@@ -41,9 +41,38 @@
                 </thead>
                 </tbody>
                 </table>
+                
             </div>
+            <!-- table responsive -->
+            <div class="float-right bd-highlight span-text">
+                    <!-- INGAT : Kalau href gak usah pake echo base_url -->
+                    <!-- INGAT : Jika menggunakan button modal, jangan sekali-kali ada data tooglenya  -->
+                    <a href="hapus_keranjang" role="button" class="btn btn-danger btn-icon-split mb-3 mr-1 ">
+                        <span class="icon text-white-20">
+                        <i class="fas fa-trash"></i>
+                        </span>
+                        <span class="text d-md-block" >Hapus Keranjang</span>
+                    </a>
+                    <a href="index" role="button" class="btn btn-primary btn-icon-split mb-3 mr-1 ">
+                        <span class="icon text-white-20">
+                        <i class="fas fa-shopping-bag"></i>
+                        </span>
+                        <span class="text d-md-block ">Lanjutkan Belanja</span>
+                    </a>
+                    <a href="pembayaran" role="button" class="btn btn-success btn-icon-split mb-3 mr-1">
+                        <span class="icon text-white-20">
+                        <i class="fas fa-cash-register"></i>
+                        </span>
+                        <span class="text d-md-block text-pembayaran">Pembayaran</span>
+                    </a>
+                    
+                </div>    
             </div>
         </div>
+    
+        
+
+
 
     </div>
         <!-- /.container-fluid -->

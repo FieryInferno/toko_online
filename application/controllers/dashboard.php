@@ -36,6 +36,21 @@
             $this->load->view('templates/footer');
         }
 
+        public function hapus_keranjang()
+        {
+            // menghapus semua data di keranjang belanja
+            $this->cart->destroy();
+            redirect('dashboard/detail_keranjang');
+        }
+
+        public function pembayaran()
+        {
+            $this->load->view('templates/header');
+            $this->load->view('templates/sidebar');
+            $this->load->view('pembayaran');
+            $this->load->view('templates/footer');
+        }
+
 
 
     }

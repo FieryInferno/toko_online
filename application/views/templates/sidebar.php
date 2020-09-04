@@ -129,9 +129,11 @@
             <!-- Nav Item - Alerts -->
             <li class="nav-item">
                 <a href="dashboard/detail_keranjang" class="nav-link active">
-                    <i class="fas fa-cart-plus"></i><span class="badge badge-danger badge-counter">
-                    <?php $keranjang = $this->cart->total_items() ?>
-                    <?php echo $keranjang ?></span>
+                    <i class="fas fa-cart-plus"></i>
+                    <span class="badge badge-danger badge-counter">
+                        <?php $keranjang = $this->cart->total_items() ?>
+                        <?php echo $keranjang ?>
+                    </span>
                 </a>
             </li>
 

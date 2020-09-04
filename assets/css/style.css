@@ -37,7 +37,7 @@
 
 /* Card Mobile Device */
 
-@media only screen and (max-width: 1000px){
+@media only screen and (max-width: 400px){
     .card-jarak .card{
         /* margin: auto !important; */
         margin-bottom: 15px !important;
@@ -51,6 +51,18 @@
         height: 200px;
     }
 
+    .span-text a span {
+        font-size: 13px;
+        padding-right: 30px;
+    }
+
+    .span-text a span.text-pembayaran {
+        padding-right: 40px;
+    }
+
+    .span-text a{
+        margin-right: -20px !important;
+    }
 }
 
 
