@@ -65,7 +65,6 @@
                         </span>
                         <span class="text d-md-block text-pembayaran">Pembayaran</span>
                     </a>
-                    
                 </div>    
             </div>
         </div>

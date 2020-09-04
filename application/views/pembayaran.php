@@ -34,6 +34,7 @@
                                 }
                             
                         ?>
+                        <!-- isi daripada input ini ya dari perulangan diatas ini -->
                         <input type="text" class="form-control"  value="<?php echo number_format($grand_total, 0,',','.') ?>" readonly>
                     </div>
                 </div>

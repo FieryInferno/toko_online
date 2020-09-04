@@ -53,12 +53,18 @@
 
         public function proses_pesanan()
         {
-            // semua data di keranjang akan dihapus ketika diclick pesan
-            $this->cart->destroy();
-            $this->load->view('templates/header');
-            $this->load->view('templates/sidebar');
-            $this->load->view('proses_pesanan');
-            $this->load->view('templates/footer');
+            // agar datanya pas diclick masuk ke table atau model invoice
+            $is_processed = $this->model_invoice->index();
+            if ($is_processed) {
+                 // semua data di keranjang akan dihapus ketika diclick pesan
+                $this->cart->destroy();
+                $this->load->view('templates/header');
+                $this->load->view('templates/sidebar');
+                $this->load->view('proses_pesanan');
+                $this->load->view('templates/footer');
+            } else{
+                echo "Maaf Pesanan Anda Gagal DiProses";
+            }
         }
 
 
