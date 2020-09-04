@@ -53,7 +53,7 @@
                         </span>
                         <span class="text d-md-block" >Hapus Keranjang</span>
                     </a>
-                    <a href="index" role="button" class="btn btn-primary btn-icon-split mb-3 mr-1 ">
+                    <a href="<?php echo base_url() ?>" role="button" class="btn btn-primary btn-icon-split mb-3 mr-1 ">
                         <span class="icon text-white-20">
                         <i class="fas fa-shopping-bag"></i>
                         </span>

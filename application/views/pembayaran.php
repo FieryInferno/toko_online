@@ -32,7 +32,7 @@
                                     // jadi 4 = 7;
                                     $grand_total = $grand_total + $item['subtotal'];
                                 }
-                            }
+                            
                         ?>
                         <input type="text" class="form-control"  value="<?php echo number_format($grand_total, 0,',','.') ?>" readonly>
                     </div>
@@ -90,6 +90,13 @@
                                 
                                 <button type="submit" class="btn btn-primary mt-2">Pesan</button>
                             </form>
+                            
+                            <!-- Jika keranajng belanja kosong -->
+                            <?php 
+                                } else {
+                                    echo "Keranjang belanja anda masih kosong";
+                                }
+                            ?>
                     </div>
                     <!-- card-body -->
                 </div>

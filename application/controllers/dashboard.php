@@ -51,6 +51,16 @@
             $this->load->view('templates/footer');
         }
 
+        public function proses_pesanan()
+        {
+            // semua data di keranjang akan dihapus ketika diclick pesan
+            $this->cart->destroy();
+            $this->load->view('templates/header');
+            $this->load->view('templates/sidebar');
+            $this->load->view('proses_pesanan');
+            $this->load->view('templates/footer');
+        }
+
 
 
     }
