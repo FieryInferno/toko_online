@@ -37,6 +37,7 @@
 
         public function find($id)
         {
+            // menemukan id barang dari barang yang dipilih
             $result = $this->db->where('id_brg', $id)
                                 ->limit(1)
                                 ->get('tb_barang');

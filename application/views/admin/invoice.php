@@ -31,7 +31,7 @@
                     <td><?php echo $inv->tgl_pesan ?></td>
                     <td><?php echo $inv->batas_bayar ?></td>
                     <td class="text-center">
-                        <button type="button" class="btn btn-success"><i class="fas fa-search-plus"></i></button>
+                        <?php echo anchor('admin/invoice/detail/'.$inv->id, '<button type="button" class="btn btn-success"><i class="fas fa-search-plus"></i></button>')?>
                     </td>
                     </tr>
                     <?php endforeach; ?>
