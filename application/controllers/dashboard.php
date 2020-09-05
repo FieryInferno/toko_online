@@ -13,9 +13,12 @@
 
         public function tambah_kk($id)
         {
-            // find untuk mencari id data yang diclick oleh user
+            // find untuk mencari id gambar/data yang diclick oleh user
+            // ... dan menampilkannya kedalam data objek menjadi 1 array data id tersebut.
             $barang = $this->model_barang->find($id);
+            // var_dump($barang);die;
 
+            // [!] DATA OBJEK DIMASUKKAN KE ARRAY UNTUK DIINPUT KE DB
             // cara menambahkan atau insert data kedalam cart
             $data = array(
                 // id barang dikirim disini
@@ -67,6 +70,16 @@
             } else{
                 echo "Maaf Pesanan Anda Gagal DiProses";
             }
+        }
+
+        public function detail($id_brg)
+        {
+            // mengambil id
+            $data['barang'] = $this->model_barang->detail_brg($id_brg);
+            $this->load->view('templates/header');
+            $this->load->view('templates/sidebar');
+            $this->load->view('detail_barang', $data);
+            $this->load->view('templates/footer');
         }
 
 

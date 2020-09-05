@@ -24,7 +24,7 @@
                 <tbody>
 
                 <?php $no=1; foreach ($this->cart->contents() as $items): ?>
-
+                    <!-- karena data yang kita kirim dalam bentuk array maka kita tangkap dengan array juga ['name'] -->
                     <tr>
                     <td><?php echo $no++ ?></td>
                     <td><?php echo $items['name'] ?></td>

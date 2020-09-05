@@ -42,12 +42,28 @@
                                 ->limit(1)
                                 ->get('tb_barang');
 
+            // memeriksa berapa banyak baris yang Anda dapatkan
             if($result->num_rows() > 0){
+                // kasikan 1 baris nilai berdasarkan id yang diminta
                 return $result->row();
             }
             else{
+                // output tulisan array dengan size 0 dan kosongan / empty
                 return array();
             }
+        }
+
+        public function detail_brg($id_brg)
+        {
+            $result = $this->db->where('id_brg', $id_brg)
+                                        ->get('tb_barang');
+            if($result->num_rows() > 0){
+                // artinya kembalikan semua datanya mau berapa data juga tampilkan
+                return $result->result();
+            }
+            else{
+                return false;
+            }                            
         }
     }
     
