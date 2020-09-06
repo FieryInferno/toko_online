@@ -51,16 +51,16 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Kategori Pakaian:</h6>
-                <a class="collapse-item" href="#">Pria</a>
-                <a class="collapse-item" href="cards.html">Wanita</a>
-                <a class="collapse-item" href="cards.html">Anak-anak</a>
+                <a class="collapse-item" href="<?php echo base_url('kategori/pakaian_pria')?>">Pria</a>
+                <a class="collapse-item" href="<?php echo base_url('kategori/pakaian_wanita')?>">Wanita</a>
+                <a class="collapse-item" href="<?php echo base_url('kategori/pakaian_anak_anak')?>">Anak-anak</a>
             </div>
         </div>
     </li>
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-    <a class="nav-link" href="tables.html">
+    <a class="nav-link" href="<?php echo base_url('kategori/peralatan_olahraga')?>">
         <i class="fas fa-basketball-ball"></i>
         <span>Peralatan Olahraga</span></a>
     </li>

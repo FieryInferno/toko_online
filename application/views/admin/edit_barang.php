@@ -17,7 +17,13 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Kategori</label>
-                    <input type="text" name="kategori" class="form-control" value="<?php echo $brg->kategori ?>">
+                    <select class="form-control" name="kategori">
+                        <option <?php if ($brg->kategori == 'Elektronik') echo 'selected'; ?>>  Elektronik</option>
+                        <option <?php if ($brg->kategori == 'Pakaian Pria') echo 'selected'; ?>>   Pakaian Pria</option>
+                        <option <?php if ($brg->kategori == 'Pakaian Wanita') echo 'selected'; ?>>  Pakaian Wanita</option>
+                        <option <?php if ($brg->kategori == 'Pakaian Anak-anak') echo 'selected'; ?>>  Pakaian Anak-anak</option>
+                        <option <?php if ($brg->kategori == 'Peralatan Olahraga') echo 'selected'; ?>>  Peralatan Olahraga</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Harga</label>

@@ -76,8 +76,14 @@
                             <input type="text" name="keterangan" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Kategori</label>
-                            <input type="text" name="kategori" class="form-control">
+                            <label for="exampleFormControlSelect1">Kategori</label>
+                            <select class="form-control" name="kategori">
+                            <option value="Elektronik">Elektronik</option>
+                            <option value="Pakaian Pria">Pakaian Pria</option>
+                            <option value="Pakaian Wanita">Pakaian Wanita</option>
+                            <option value="Pakaian Anak-anak">Pakaian Anak-anak</option>
+                            <option value="Peralatan Olahraga">Peralatan Olahraga</option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Harga</label>
