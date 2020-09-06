@@ -37,7 +37,7 @@
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="<?php echo base_url('kategori/elektronik')?>">
             <i class="fas fa-headphones-alt"></i>
             <span>Elektronik</span></a>
     </li>
