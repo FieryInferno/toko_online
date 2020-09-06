@@ -163,16 +163,15 @@
                             Activity Log
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="<?php echo base_url('auth/logout') ?>" data-toggle="modal" data-target="#logoutModal">
+                        <a class="dropdown-item" href="<?php echo base_url('auth/logout') ?>">
                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                             Logout
                         </a>
                     </div>
                     <?php }else{ ?>
-                    <?php echo anchor('auth/login', '<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link" href="<?php echo base_url('auth/login') ?>" role="button">
                     <button type="button" class="btn btn-success">Login</button>
-                    </a>')  ?>
-
+                    </a>
                     <?php } ?>
                 </li>
 

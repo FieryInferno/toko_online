@@ -1,7 +1,27 @@
 <?php 
 
-    class Dashboard extends CI_Controller   {
-        
+    Class Dashboard extends CI_Controller   {
+
+        public function __construct() {
+            // user wajib dipaksa login dulu sebelum mengakses dashboardnya masing-masing
+            parent::__construct();
+            if ($this->session->userdata('role_id') != '2') {
+                $this->session->set_flashdata('pesan','<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Anda Belum Login!
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                </div>');
+                redirect('auth/login');
+            } else {
+                # code...
+            }
+            
+        }
+
+        /* 
+        // dipindah ke file welcome.php dan default controller routes jadi welcome.
+        // karena ada function cinstruct yang akan dijalan, dan TIDAK akan bisa mengakses fungsi2 di controller dashboard sebelum login
         public function index()
         {
             $data['barang'] = $this->model_barang->tampil_data()->result();
@@ -10,6 +30,7 @@
             $this->load->view('dashboard', $data);
             $this->load->view('templates/footer');
         }
+        */
 
         public function tambah_kk($id)
         {
@@ -30,7 +51,7 @@
             );
         
             $this->cart->insert($data);     
-            redirect('dashboard');
+            redirect('welcome');
         }
 
         public function detail_keranjang()
@@ -45,7 +66,7 @@
         {
             // menghapus semua data di keranjang belanja
             $this->cart->destroy();
-            redirect('dashboard/detail_keranjang');
+            redirect('welcome');
         }
 
         public function pembayaran()

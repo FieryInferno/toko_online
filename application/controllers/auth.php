@@ -32,12 +32,21 @@
                     switch($auth->role_id){
                         // role id antara 1 dan 2, case 1 artinya role id di db 1 dst
                         case 1 : redirect('admin/dashboard_admin'); break;
-                        case 2 : redirect('dashboard'); break;
+                        case 2 : redirect('welcome'); break;
                         default: break;
                     }
                 }
                 
             }
+        }
+
+        public function logout()
+        {
+            $this->session->sess_destroy();
+            echo '<script>
+                alert("Sukses! Anda berhasil logout."); 
+                window.location.href="'.base_url('auth/login').'";
+                </script>';
         }
     }
 
