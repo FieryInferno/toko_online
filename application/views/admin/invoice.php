@@ -10,36 +10,36 @@
             <h6 class="m-0 font-weight-bold text-primary">Tabel Invoice</h6>
             </div>
             <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                    <tr>
-                    <th>Id Invoice</th>
-                    <th>Nama Pemesan</th>
-                    <th>Alamat Pengiriman</th>
-                    <th>Tanggal Pemesanan</th>
-                    <th>Batas Pembayaran</th>
-                    <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($invoice as $inv) : ?>
-                    <tr>
-                    <td><?php echo $inv->id ?></td>
-                    <td><?php echo $inv->nama ?></td>
-                    <td><?php echo $inv->alamat ?></td>
-                    <td><?php echo $inv->tgl_pesan ?></td>
-                    <td><?php echo $inv->batas_bayar ?></td>
-                    <td class="text-center">
-                        <?php echo anchor('admin/invoice/detail/'.$inv->id, '<button type="button" class="btn btn-success"><i class="fas fa-search-plus"></i></button>')?>
-                    </td>
-                    </tr>
-                    <?php endforeach; ?>
-                </tbody>
-                </table>
-            </div>
-
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                        <th>Id Invoice</th>
+                        <th>Nama Pemesan</th>
+                        <th>Alamat Pengiriman</th>
+                        <th>Tanggal Pemesanan</th>
+                        <th>Batas Pembayaran</th>
+                        <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($invoice as $inv) : ?>
+                            <tr>
+                            <td><?php echo $inv->id ?></td>
+                            <td><?php echo $inv->nama ?></td>
+                            <td><?php echo $inv->alamat ?></td>
+                            <td><?php echo $inv->tgl_pesan ?></td>
+                            <td><?php echo $inv->batas_bayar ?></td>
+                            <td class="text-center">
+                                <?php echo anchor('admin/invoice/detail/'.$inv->id, '<button type="button" class="btn btn-success"><i class="fas fa-search-plus"></i></button>')?>
+                            </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                    </table>
+                </div>
             </div>
         </div>
+
     </div>
 </div>

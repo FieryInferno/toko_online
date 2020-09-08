@@ -20,4 +20,6 @@
     <link href="<?php echo base_url() ?>assets/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/css/style.css" rel="stylesheet">
 
+    <!-- Datables -->
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/DataTables/datatables.min.css">
 </head>

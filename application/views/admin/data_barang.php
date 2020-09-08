@@ -12,24 +12,24 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Data Barang</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Tabel Invoice</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead class="text-center">
-                        <tr>
+                    <table class="table table-bordered table-hover table-striped" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr  class="text-center">
                         <th>NO</th>
                         <th>NAMA BARANG</th>
                         <th>KETERANGAN</th>
                         <th>KATEGORI</th>
                         <th>HARGA</th>
                         <th>STOK</th>
-                        <th colspan="3">AKSI</th>
+                        <th>AKSI</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $no=1; foreach ($barang as $brg) : ?>
+                    <?php $no=1; foreach ($barang as $brg) : ?>
                             <tr>
                                 <td><?php echo $no++ ?></td>
                                 <td><?php echo $brg->nama_brg ?></td>
@@ -39,11 +39,7 @@
                                 <td><?php echo $brg->stok ?></td>
                                 <td class="text-center">
                                     <button type="button" class="btn btn-success"><i class="fas fa-search-plus"> </i></button>
-                                </td>
-                                <td class="text-center">
                                     <?php echo anchor('admin/data_barang/edit/' .$brg->id_brg, '<button type="button" class="btn btn-primary"><i class="fas fa-edit"></i></button>') ?>
-                                </td>
-                                <td class="text-center">
                                     <?php echo anchor('admin/data_barang/hapus/' .$brg->id_brg, '<button type="button" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>') ?>
                                 </td>
                             </tr>
@@ -52,7 +48,6 @@
                     </table>
                 </div>
             </div>
-            <!-- card-body -->
         </div>
 
         <!-- Modal -->

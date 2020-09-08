@@ -102,9 +102,6 @@
             $this->load->view('detail_barang', $data);
             $this->load->view('templates/footer');
         }
-
-
-
     }
 
 ?>
