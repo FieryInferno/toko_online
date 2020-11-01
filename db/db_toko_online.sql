@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2020 at 08:52 AM
+-- Generation Time: Nov 01, 2020 at 09:02 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -42,7 +42,7 @@ CREATE TABLE `tb_barang` (
 --
 
 INSERT INTO `tb_barang` (`id_brg`, `nama_brg`, `keterangan`, `kategori`, `harga`, `stok`, `gambar_brg`) VALUES
-(9, 'Sendal', 'Mulus', 'Pakaian Wanita', 20000, 2, 'Screenshot_(79).png');
+(9, 'Sendal', 'Mulus', 'Pakaian Wanita', 20000, 1, 'Screenshot_(79).png');
 
 -- --------------------------------------------------------
 
@@ -64,7 +64,9 @@ CREATE TABLE `tb_invoice` (
 
 INSERT INTO `tb_invoice` (`id`, `nama`, `alamat`, `tgl_pesan`, `batas_bayar`) VALUES
 (13, 'Rigin', 'Jln. Juanda', '2020-11-01 14:49:38', '2020-11-02 14:49:38'),
-(14, 'Joko', 'w', '2020-11-01 14:50:03', '2020-11-02 14:50:03');
+(14, 'Joko', 'w', '2020-11-01 14:50:03', '2020-11-02 14:50:03'),
+(15, 'x', 'x', '2020-11-01 14:56:46', '2020-11-02 14:56:46'),
+(16, 'xxx', 'xxx', '2020-11-01 15:02:09', '2020-11-02 15:02:09');
 
 -- --------------------------------------------------------
 
@@ -93,7 +95,20 @@ INSERT INTO `tb_pesanan` (`id`, `id_invoice`, `id_brg`, `nama_brg`, `jumlah`, `h
 (29, 12, 1, 'Baju', 1, 79000, ''),
 (30, 12, 2, 'Sandal Casual', 1, 35000, ''),
 (31, 13, 9, 'Sendal', 1, 20000, ''),
-(32, 14, 9, 'Sendal', 2, 20000, '');
+(32, 14, 9, 'Sendal', 2, 20000, ''),
+(33, 15, 9, 'Sendal', 1, 20000, ''),
+(34, 16, 9, 'Sendal', 1, 20000, '');
+
+--
+-- Triggers `tb_pesanan`
+--
+DELIMITER $$
+CREATE TRIGGER `pesanan_penjualan` AFTER INSERT ON `tb_pesanan` FOR EACH ROW BEGIN
+	UPDATE tb_barang SET stok = stok-NEW.jumlah
+    WHERE id_brg = NEW.id_brg;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -159,13 +174,13 @@ ALTER TABLE `tb_barang`
 -- AUTO_INCREMENT for table `tb_invoice`
 --
 ALTER TABLE `tb_invoice`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `tb_pesanan`
 --
 ALTER TABLE `tb_pesanan`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `tb_users`
