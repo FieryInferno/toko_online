@@ -3,7 +3,7 @@
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">Detail Pesanan</h1>
         <p class="mb-4">Semangat belanjanya murah harganya hanya di <a target="_blank" href="<?php echo base_url()?>">BeliKuy.com</a>.</p>
-        <h4><span class="badge badge-pill badge-success mb-3">No. Invoice : <?php echo $invoice->id ?></span></h4>
+        <h4><span class="badge badge-pill badge-success mb-3">No. Invoice : <?php echo $invoice->id_invoice ?></span></h4>
         
         <!-- DataTales Example -->
         <div class="card shadow mb-4">

@@ -40,55 +40,19 @@
             return TRUE;
         }
 
-        // public function count_item_keranjang()
-        // {
-        //     $this->db->select('COUNT(id_keranjang) AS total_keranjang');
-        //     $this->db->from('tb_keranjang');
-        //     $this->db->group_by('id_user');
-        //     $this->db->order_by('id_keranjang', 'desc');
-        //     return $this->db->get()->row(); // karena ingin memunculkan semua datanya maka kita dapat menggunakan result
-        // }
-
-        // public function add_keranjang_db()
-        // {
-
-        //     // $id_invoice = $this->db->insert_id();
-
-        //     // put ordered items in orders table
-        //     $id_user = $this->session->userdata('id_user');
-
-        //     foreach ($this->cart->contents() as $item) {
-        //         $data = array(
-        //             // Id_invoice masuk sebagai id invoice
-        //             // 'id_invoice'    => $id_invoice,
-        //             // diambil dari controller dashboard/tambah_ke keranjang
-        //             'id_user'               => $id_user,
-        //             'id_brg'                => $item['id'],
-        //             'nama_barang'           => $item['name'],
-        //             'jumlah'                => $item['qty'],
-        //             'harga'                 => $item['price'],
-        //         );
-        //         // setelah itu kita masukkan ketabel pesanan
-        //         $this->db->insert('tb_keranjang', $data);
-        //     }
-            
-        //     return TRUE;
-        // }
-
         public function tampil_data()
         {
             $result     = $this->db->get('tb_invoice');
             if ($result->num_rows() > 0){
                 return $result->result();
-            }
-            else{
+            }else{
                 return false;
             }
         }
 
         public function ambil_id_invoice($id_invoice)
         {
-            $result     = $this->db->where('id', $id_invoice)
+            $result     = $this->db->where('id_invoice', $id_invoice)
                                                 ->limit(1)
                                                 ->get('tb_invoice');
             if ($result->num_rows() > 0){

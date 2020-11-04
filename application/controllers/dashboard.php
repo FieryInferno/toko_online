@@ -19,43 +19,16 @@
             
         }
 
-        /* 
-        // dipindah ke file welcome.php dan default controller routes jadi welcome.
-        // karena ada function cinstruct yang akan dijalan, dan TIDAK akan bisa mengakses fungsi2 di controller dashboard sebelum login
-        public function index()
-        {
-            $data['barang'] = $this->model_barang->tampil_data()->result();
-            $this->load->view('templates/header');
-            $this->load->view('templates/sidebar');
-            $this->load->view('dashboard', $data);
-            $this->load->view('templates/footer');
-        }
-        */
-
         public function tambah_kk($id)
         {
-            // menghitung jumlah keranjang.
-            $jumlah_keranjang_di_db = $this->model_invoice->count_item_keranjang();
-            
-            // find untuk mencari id gambar/data yang diclick oleh user
-            // ... dan menampilkannya kedalam data objek menjadi 1 array data id tersebut.
-            $a = $this->model_barang->find($id);
-            // var_dump($barang);die;
-
-            // [!] DATA OBJEK DIMASUKKAN KE ARRAY UNTUK DIINPUT KE DB
-            // cara menambahkan atau insert data kedalam cart
+            $barang = $this->model_barang->find($id);
             $data = array(
-                // id barang dikirim disini
-                // id disini merupakan rumus awal codeigniter
-                'id'      => $a->id_brg,
+                'id'      => $barang->id_brg,
                 'qty'     => 1,
-                'price'   => $a->harga,
-                'name'    => $a->nama_brg,
+                'price'   => $barang->harga,
+                'name'    => $barang->nama_brg,
             );
-            
             $this->cart->insert($data);
-            // Menambahkan ke tabel keranjang.
-            $this->model_invoice->add_keranjang_db();    
             redirect('welcome');
         }
 
