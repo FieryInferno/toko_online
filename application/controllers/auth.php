@@ -26,6 +26,8 @@
                     </div>'); 
                     redirect('auth/login');
                 } else {
+                    // menambahkan user id biar bisa dipanggil dimanapun
+                    $this->session->set_userdata('id_user', $auth->id_user);
                     $this->session->set_userdata('username', $auth->username);
                     $this->session->set_userdata('role_id', $auth->role_id);
                     

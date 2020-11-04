@@ -34,9 +34,12 @@
 
         public function tambah_kk($id)
         {
+            // menghitung jumlah keranjang.
+            $jumlah_keranjang_di_db = $this->model_invoice->count_item_keranjang();
+            
             // find untuk mencari id gambar/data yang diclick oleh user
             // ... dan menampilkannya kedalam data objek menjadi 1 array data id tersebut.
-            $barang = $this->model_barang->find($id);
+            $a = $this->model_barang->find($id);
             // var_dump($barang);die;
 
             // [!] DATA OBJEK DIMASUKKAN KE ARRAY UNTUK DIINPUT KE DB
@@ -44,13 +47,15 @@
             $data = array(
                 // id barang dikirim disini
                 // id disini merupakan rumus awal codeigniter
-                'id'      => $barang->id_brg,
+                'id'      => $a->id_brg,
                 'qty'     => 1,
-                'price'   => $barang->harga,
-                'name'    => $barang->nama_brg,
+                'price'   => $a->harga,
+                'name'    => $a->nama_brg,
             );
-        
-            $this->cart->insert($data);     
+            
+            $this->cart->insert($data);
+            // Menambahkan ke tabel keranjang.
+            $this->model_invoice->add_keranjang_db();    
             redirect('welcome');
         }
 

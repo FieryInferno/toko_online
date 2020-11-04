@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2020 at 09:02 AM
+-- Generation Time: Nov 04, 2020 at 10:00 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -42,7 +42,8 @@ CREATE TABLE `tb_barang` (
 --
 
 INSERT INTO `tb_barang` (`id_brg`, `nama_brg`, `keterangan`, `kategori`, `harga`, `stok`, `gambar_brg`) VALUES
-(9, 'Sendal', 'Mulus', 'Pakaian Wanita', 20000, 1, 'Screenshot_(79).png');
+(9, 'Sendal', 'Mulus', 'Pakaian Wanita', 20000, 23, 'Screenshot_(79).png'),
+(10, 'Bola', 'ya', 'Elektronik', 20000, 25, 'Screenshot_(66).png');
 
 -- --------------------------------------------------------
 
@@ -51,7 +52,7 @@ INSERT INTO `tb_barang` (`id_brg`, `nama_brg`, `keterangan`, `kategori`, `harga`
 --
 
 CREATE TABLE `tb_invoice` (
-  `id` int(10) NOT NULL,
+  `id_invoice` int(10) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `alamat` varchar(225) NOT NULL,
   `tgl_pesan` datetime NOT NULL,
@@ -62,11 +63,44 @@ CREATE TABLE `tb_invoice` (
 -- Dumping data for table `tb_invoice`
 --
 
-INSERT INTO `tb_invoice` (`id`, `nama`, `alamat`, `tgl_pesan`, `batas_bayar`) VALUES
+INSERT INTO `tb_invoice` (`id_invoice`, `nama`, `alamat`, `tgl_pesan`, `batas_bayar`) VALUES
 (13, 'Rigin', 'Jln. Juanda', '2020-11-01 14:49:38', '2020-11-02 14:49:38'),
 (14, 'Joko', 'w', '2020-11-01 14:50:03', '2020-11-02 14:50:03'),
 (15, 'x', 'x', '2020-11-01 14:56:46', '2020-11-02 14:56:46'),
-(16, 'xxx', 'xxx', '2020-11-01 15:02:09', '2020-11-02 15:02:09');
+(16, 'xxx', 'xxx', '2020-11-01 15:02:09', '2020-11-02 15:02:09'),
+(17, 'AAAAAAAAAAAAAAAAAAAAAAAA', 'AAAAAAAAA', '2020-11-04 12:18:23', '2020-11-05 12:18:23'),
+(18, '2', '2', '2020-11-04 14:43:26', '2020-11-05 14:43:26'),
+(19, '2', '2', '2020-11-04 14:43:43', '2020-11-05 14:43:43');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_keranjang`
+--
+
+CREATE TABLE `tb_keranjang` (
+  `id_keranjang` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_brg` int(11) NOT NULL,
+  `nama_barang` varchar(255) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `harga` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_keranjang`
+--
+
+INSERT INTO `tb_keranjang` (`id_keranjang`, `id_user`, `id_brg`, `nama_barang`, `jumlah`, `harga`) VALUES
+(23, 13, 10, 'Bola', 1, 20000),
+(24, 13, 10, 'Bola', 2, 20000),
+(25, 13, 10, 'Bola', 3, 20000),
+(26, 13, 10, 'Bola', 3, 20000),
+(27, 13, 9, 'Sendal', 1, 20000),
+(28, 13, 10, 'Bola', 3, 20000),
+(29, 13, 9, 'Sendal', 2, 20000),
+(30, 13, 10, 'Bola', 4, 20000),
+(31, 13, 9, 'Sendal', 2, 20000);
 
 -- --------------------------------------------------------
 
@@ -97,7 +131,9 @@ INSERT INTO `tb_pesanan` (`id`, `id_invoice`, `id_brg`, `nama_brg`, `jumlah`, `h
 (31, 13, 9, 'Sendal', 1, 20000, ''),
 (32, 14, 9, 'Sendal', 2, 20000, ''),
 (33, 15, 9, 'Sendal', 1, 20000, ''),
-(34, 16, 9, 'Sendal', 1, 20000, '');
+(34, 16, 9, 'Sendal', 1, 20000, ''),
+(35, 17, 9, 'Sendal', 1, 20000, ''),
+(36, 19, 9, 'Sendal', 3, 20000, '');
 
 --
 -- Triggers `tb_pesanan`
@@ -117,7 +153,7 @@ DELIMITER ;
 --
 
 CREATE TABLE `tb_users` (
-  `id` int(10) NOT NULL,
+  `id_user` int(10) NOT NULL,
   `nama` varchar(25) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(60) NOT NULL,
@@ -128,9 +164,9 @@ CREATE TABLE `tb_users` (
 -- Dumping data for table `tb_users`
 --
 
-INSERT INTO `tb_users` (`id`, `nama`, `username`, `password`, `role_id`) VALUES
+INSERT INTO `tb_users` (`id_user`, `nama`, `username`, `password`, `role_id`) VALUES
 (1, 'admin', 'admin@gmail.com', 'password', 1),
-(12, 'yunan', 'user@gmail.com', 'password', 2);
+(13, 'user', 'user@gmail.com', 'password', 2);
 
 --
 -- Indexes for dumped tables
@@ -146,7 +182,13 @@ ALTER TABLE `tb_barang`
 -- Indexes for table `tb_invoice`
 --
 ALTER TABLE `tb_invoice`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_invoice`);
+
+--
+-- Indexes for table `tb_keranjang`
+--
+ALTER TABLE `tb_keranjang`
+  ADD PRIMARY KEY (`id_keranjang`);
 
 --
 -- Indexes for table `tb_pesanan`
@@ -158,7 +200,7 @@ ALTER TABLE `tb_pesanan`
 -- Indexes for table `tb_users`
 --
 ALTER TABLE `tb_users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id_user`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -168,25 +210,31 @@ ALTER TABLE `tb_users`
 -- AUTO_INCREMENT for table `tb_barang`
 --
 ALTER TABLE `tb_barang`
-  MODIFY `id_brg` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_brg` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tb_invoice`
 --
 ALTER TABLE `tb_invoice`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_invoice` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `tb_keranjang`
+--
+ALTER TABLE `tb_keranjang`
+  MODIFY `id_keranjang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `tb_pesanan`
 --
 ALTER TABLE `tb_pesanan`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `tb_users`
 --
 ALTER TABLE `tb_users`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
