@@ -64,11 +64,6 @@
             <i class="fas fa-basketball-ball"></i><span>Peralatan Olahraga</span>
         </a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url('chat')?>">
-            <i class="fas fa-comments"></i><span>Chat</span>
-        </a>
-    </li>
 
 
     <!-- Divider -->
