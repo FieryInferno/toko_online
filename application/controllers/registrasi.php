@@ -25,7 +25,6 @@
                 $this->load->view('registrasi');
             } else {
                 $data = array(
-                    'id' => '',
                     'nama' => $this->input->post('nama'), 
                     'username' => $this->input->post('username'),
                     'password' => $this->input->post('password_1'),

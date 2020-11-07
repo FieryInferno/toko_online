@@ -19,5 +19,50 @@
     <!-- Custom styles for this template-->
     <link href="<?php echo base_url() ?>assets/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets/css/style.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .checked {
+        color: orange;
+        }
+        .rating {
+            border: none;
+            float: left;
+        }
+        .rating > input { display: none; }
+        .rating > label::before {
+            margin: 5px;
+            font-size: 1.25em;
+            font-family: FontAwesome;
+            display: inline-block;
+            content: "\f005";
+        }
+        .rating > label {
+            color: #ddd;
+            float: right;
+        }
+        .rating > input:checked ~ label,
+        .rating:not(:checked) > label:hover,
+        .rating:not(:checked) > label:hover ~ label {
+            color: #f7d106;
+        }
+        .rating > input:checked + label:hover,
+        .rating > input:checked ~ label:hover,
+        .rating > label:hover ~ input:checked ~ label,
+        .rating > input:checked ~ label:hover ~ label {
+            color: #fce873;
+        }
+        h4 {
+            font-weight: normal;
+            margin-top: 40px;
+            margin-bottom: 0px;
+        }
+        #star {
+            float: left;
+            padding-right: 20px;
+        }
+        #star span{
+            padding: 3px;
+            font-size: 20px;
+        }
+    </style>
 </head>

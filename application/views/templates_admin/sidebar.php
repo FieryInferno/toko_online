@@ -43,6 +43,11 @@
             <i class="fas fa-file-invoice"></i>
             <span>Invoices</span></a>
     </li> 
+    <li class="nav-item">
+        <a class="nav-link" href="<?php echo base_url('chat')?>">
+            <i class="fas fa-comments"></i><span>Chat</span>
+        </a>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
