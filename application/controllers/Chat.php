@@ -48,13 +48,21 @@ class Chat extends CI_Controller {
 	{
         $data['admin']      = $this->Model_chat->get_admin();
         $data['penerima']   = $this->Model_chat->get_penerima();
-		$this->load->view('templates/header');
-		$this->load->view('templates/sidebar');
-		$this->load->view('chat/index', $data);
-		$this->load->view('templates/footer');
+        if ($this->session->role_id == 2) {
+            $this->load->view('templates/header');
+            $this->load->view('templates/sidebar');
+            $this->load->view('chat/index', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $this->load->view('templates_admin/header');
+            $this->load->view('templates_admin/sidebar');
+            $this->load->view('chat/index', $data);
+            $this->load->view('templates_admin/footer');
+        }
+		
     }
     
-    public function isi($id = null)
+    public function isi($id = null, $id2 = null)
 	{
         if ($id) {
             switch ($this->session->role_id) {
@@ -65,6 +73,10 @@ class Chat extends CI_Controller {
                 case '2':
                     $this->Model_chat->set('admin', $id);
                     $this->Model_chat->set('user', $this->user);
+                    break;
+                case '3':
+                    $this->Model_chat->set('user', $id);
+                    $this->Model_chat->set('admin', $id2);
                     break;
                 
                 default:

@@ -50,6 +50,9 @@
                                         case '2': ?>
                                             <h5 class="mt-0 mb-1"><strong><a href="<?= base_url(); ?>Chat/isi/<?= $key['admin']; ?>"><?= $key['nama']; ?></a></strong><br></h5>
                                             <?php break;
+                                        case '3': ?>
+                                            <h5 class="mt-0 mb-1"><strong><a href="<?= base_url(); ?>Chat/isi/<?= $key['user']; ?>/<?= $key['admin']; ?>">Chat <?= $key['nama']; ?> dan <?= $key['namaUser']; ?></a></strong><br></h5>
+                                            <?php break;
                                         
                                         default:
                                             # code...
