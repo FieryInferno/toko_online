@@ -8,12 +8,12 @@
                 foreach ($isi['isi_chat'] as $isi_chat) { 
                     switch ($this->session->role_id) {
                         case '3':
-                            if ($isi_chat['role_penerima'] == '1') { ?>
+                            if ($isi_chat['role_pengirim'] == '1') { ?>
                                 <div class="row">
                                     <div class="col-6"></div>
                                     <div class="col-6">
                                         <div class="alert alert-success" role="alert">
-                                            <?= $isi_chat['nama_penerima']; ?>
+                                            <?= $isi_chat['nama_pengirim']; ?>
                                             <hr>
                                             <?= $isi_chat['isi']; ?> 
                                         </div>
@@ -23,8 +23,9 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="alert alert-secondary" role="alert">
-                                        <h4 class="alert-heading"><?= $isi_chat['nama_penerima']; ?></h4>
-                                        <?= $isi_chat['isi']; ?> 
+                                            <?= $isi_chat['nama_pengirim']; ?>
+                                            <hr>
+                                            <?= $isi_chat['isi']; ?> 
                                         </div>
                                     </div>
                                     <div class="col-6"></div>
