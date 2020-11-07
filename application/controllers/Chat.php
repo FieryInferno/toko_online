@@ -12,6 +12,19 @@ class Chat extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
+        // user wajib dipaksa login dulu sebelum mengakses dashboardnya masing-masing
+        parent::__construct();
+        if ($this->session->userdata('role_id') != '2') {
+            $this->session->set_flashdata('pesan','<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Anda Belum Login!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>');
+            redirect('auth/login');
+        } else {
+            # code...
+        }
         switch ($this->session->role_id) {
             case '1':
                 $this->user    = $this->input->post('user');
