@@ -78,7 +78,7 @@
                                                     <td>
                                                         <form method="post" action="<?= base_url(); ?>Barang/tambahRating">
                                                             <div class=row>
-                                                                <div class="col-3 rating" id="rating">
+                                                                <div class="col-6 rating" id="rating">
                                                                     <input type="hidden" name="id_brg" value="<?= $brg['id_brg']; ?>">
                                                                     <input type="radio" class="rate" id="star5" name="rating" value="5"/>
                                                                     <label for="star5" title="Sempurna - 5 Bintang"></label>
