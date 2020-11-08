@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 04, 2020 at 03:15 PM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.4.10
+-- Host: localhost
+-- Waktu pembuatan: 08 Nov 2020 pada 13.51
+-- Versi server: 10.1.37-MariaDB
+-- Versi PHP: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -24,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_barang`
+-- Struktur dari tabel `tb_barang`
 --
 
 CREATE TABLE `tb_barang` (
@@ -34,21 +35,43 @@ CREATE TABLE `tb_barang` (
   `kategori` text NOT NULL,
   `harga` int(9) NOT NULL,
   `stok` int(3) NOT NULL,
-  `gambar_brg` text NOT NULL
+  `gambar_brg` text NOT NULL,
+  `admin` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_barang`
+-- Dumping data untuk tabel `tb_barang`
 --
 
-INSERT INTO `tb_barang` (`id_brg`, `nama_brg`, `keterangan`, `kategori`, `harga`, `stok`, `gambar_brg`) VALUES
-(9, 'Sendal', 'Mulus', 'Pakaian Wanita', 20000, 23, 'Screenshot_(79).png'),
-(10, 'Bola', 'ya', 'Elektronik', 20000, 24, 'Screenshot_(66).png');
+INSERT INTO `tb_barang` (`id_brg`, `nama_brg`, `keterangan`, `kategori`, `harga`, `stok`, `gambar_brg`, `admin`) VALUES
+(9, 'Sendal', 'Mulus', 'Pakaian Wanita', 20000, 23, 'Screenshot_(79).png', 1),
+(10, 'Bola', 'ya', 'Elektronik', 20000, 24, 'Screenshot_(66).png', 16);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_invoice`
+-- Struktur dari tabel `tb_chat`
+--
+
+CREATE TABLE `tb_chat` (
+  `id_chat` varchar(255) NOT NULL,
+  `user` int(255) NOT NULL,
+  `admin` int(255) NOT NULL,
+  `hapus_admin` int(1) NOT NULL DEFAULT '0',
+  `hapus_user` int(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tb_chat`
+--
+
+INSERT INTO `tb_chat` (`id_chat`, `user`, `admin`, `hapus_admin`, `hapus_user`) VALUES
+('5fa7e493035ca', 13, 16, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_invoice`
 --
 
 CREATE TABLE `tb_invoice` (
@@ -60,7 +83,7 @@ CREATE TABLE `tb_invoice` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_invoice`
+-- Dumping data untuk tabel `tb_invoice`
 --
 
 INSERT INTO `tb_invoice` (`id_invoice`, `nama`, `alamat`, `tgl_pesan`, `batas_bayar`) VALUES
@@ -76,7 +99,29 @@ INSERT INTO `tb_invoice` (`id_invoice`, `nama`, `alamat`, `tgl_pesan`, `batas_ba
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_pesanan`
+-- Struktur dari tabel `tb_isi_chat`
+--
+
+CREATE TABLE `tb_isi_chat` (
+  `id_isi_chat` varchar(255) NOT NULL,
+  `id_chat` varchar(255) NOT NULL,
+  `pengirim` int(255) NOT NULL,
+  `penerima` int(255) NOT NULL,
+  `isi` varchar(255) NOT NULL,
+  `waktu` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tb_isi_chat`
+--
+
+INSERT INTO `tb_isi_chat` (`id_isi_chat`, `id_chat`, `pengirim`, `penerima`, `isi`, `waktu`) VALUES
+('5fa7e499abfbe', '5fa7e493035ca', 13, 16, 'halo', '2020-11-08 12:29:13');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_pesanan`
 --
 
 CREATE TABLE `tb_pesanan` (
@@ -90,7 +135,7 @@ CREATE TABLE `tb_pesanan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_pesanan`
+-- Dumping data untuk tabel `tb_pesanan`
 --
 
 INSERT INTO `tb_pesanan` (`id`, `id_invoice`, `id_brg`, `nama_brg`, `jumlah`, `harga`, `pilihan`) VALUES
@@ -108,7 +153,7 @@ INSERT INTO `tb_pesanan` (`id`, `id_invoice`, `id_brg`, `nama_brg`, `jumlah`, `h
 (37, 20, 10, 'Bola', 1, 20000, '');
 
 --
--- Triggers `tb_pesanan`
+-- Trigger `tb_pesanan`
 --
 DELIMITER $$
 CREATE TRIGGER `pesanan_penjualan` AFTER INSERT ON `tb_pesanan` FOR EACH ROW BEGIN
@@ -121,7 +166,30 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_users`
+-- Struktur dari tabel `tb_rating`
+--
+
+CREATE TABLE `tb_rating` (
+  `id_rating` varchar(255) NOT NULL,
+  `id_brg` int(255) NOT NULL,
+  `rating` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tb_rating`
+--
+
+INSERT INTO `tb_rating` (`id_rating`, `id_brg`, `rating`) VALUES
+('5fa65fb625f3f', 10, 5),
+('5fa6600007806', 10, 4),
+('5fa6600410583', 10, 3),
+('5fa6601371853', 10, 2),
+('5fa660164dcb9', 10, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tb_users`
 --
 
 CREATE TABLE `tb_users` (
@@ -133,69 +201,89 @@ CREATE TABLE `tb_users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_users`
+-- Dumping data untuk tabel `tb_users`
 --
 
 INSERT INTO `tb_users` (`id_user`, `nama`, `username`, `password`, `role_id`) VALUES
 (1, 'admin', 'admin@gmail.com', 'password', 1),
 (13, 'user', 'user@gmail.com', 'password', 2),
-(14, 'owner', 'owner@gmail.com', 'password', 3);
+(14, 'owner', 'owner@gmail.com', 'password', 3),
+(15, 'user 1', 'user1@gmail.com', 'password', 2),
+(16, 'admin2', 'admin2@gmail.com', 'password', 1);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `tb_barang`
+-- Indeks untuk tabel `tb_barang`
 --
 ALTER TABLE `tb_barang`
   ADD PRIMARY KEY (`id_brg`);
 
 --
--- Indexes for table `tb_invoice`
+-- Indeks untuk tabel `tb_chat`
+--
+ALTER TABLE `tb_chat`
+  ADD PRIMARY KEY (`id_chat`);
+
+--
+-- Indeks untuk tabel `tb_invoice`
 --
 ALTER TABLE `tb_invoice`
   ADD PRIMARY KEY (`id_invoice`);
 
 --
--- Indexes for table `tb_pesanan`
+-- Indeks untuk tabel `tb_isi_chat`
+--
+ALTER TABLE `tb_isi_chat`
+  ADD PRIMARY KEY (`id_isi_chat`);
+
+--
+-- Indeks untuk tabel `tb_pesanan`
 --
 ALTER TABLE `tb_pesanan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tb_users`
+-- Indeks untuk tabel `tb_rating`
+--
+ALTER TABLE `tb_rating`
+  ADD PRIMARY KEY (`id_rating`);
+
+--
+-- Indeks untuk tabel `tb_users`
 --
 ALTER TABLE `tb_users`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `tb_barang`
+-- AUTO_INCREMENT untuk tabel `tb_barang`
 --
 ALTER TABLE `tb_barang`
   MODIFY `id_brg` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `tb_invoice`
+-- AUTO_INCREMENT untuk tabel `tb_invoice`
 --
 ALTER TABLE `tb_invoice`
   MODIFY `id_invoice` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `tb_pesanan`
+-- AUTO_INCREMENT untuk tabel `tb_pesanan`
 --
 ALTER TABLE `tb_pesanan`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
--- AUTO_INCREMENT for table `tb_users`
+-- AUTO_INCREMENT untuk tabel `tb_users`
 --
 ALTER TABLE `tb_users`
-  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

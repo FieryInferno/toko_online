@@ -38,7 +38,7 @@
         }
         .rating > label {
             color: #ddd;
-            float: right;
+            /* float: right; */
         }
         .rating > input:checked ~ label,
         .rating:not(:checked) > label:hover,

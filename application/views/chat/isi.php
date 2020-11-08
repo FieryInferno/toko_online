@@ -20,7 +20,8 @@
                                         <div class="alert alert-success" role="alert">
                                             <?= $isi_chat['nama_pengirim']; ?>
                                             <hr>
-                                            <?= $isi_chat['isi']; ?> 
+                                            <?= $isi_chat['isi']; ?>
+                                            <p class="pull-right"><?= $isi_chat['waktu']; ?></p> 
                                         </div>
                                     </div>
                                 </div>
@@ -31,7 +32,8 @@
                                         <div class="alert alert-secondary" role="alert">
                                             <?= $isi_chat['nama_pengirim']; ?>
                                             <hr>
-                                            <?= $isi_chat['isi']; ?> 
+                                            <?= $isi_chat['isi']; ?>
+                                            <p class="pull-right"><?= $isi_chat['waktu']; ?></p> 
                                         </div>
                                     </div>
                                     <div class="col-6"></div>
@@ -49,7 +51,8 @@
                                     <div class="col-6"></div>
                                     <div class="col-6">
                                         <div class="alert alert-success" role="alert">
-                                            <?= $isi_chat['isi']; ?> 
+                                            <?= $isi_chat['isi']; ?>
+                                            <p class="pull-right"><?= $isi_chat['waktu']; ?></p> 
                                         </div>
                                     </div>
                                 </div>
@@ -58,7 +61,8 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="alert alert-secondary" role="alert">
-                                        <?= $isi_chat['isi']; ?> 
+                                            <?= $isi_chat['isi']; ?>
+                                            <p class="pull-right"><?= $isi_chat['waktu']; ?></p>
                                         </div>
                                     </div>
                                     <div class="col-6"></div>

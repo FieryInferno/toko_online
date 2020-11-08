@@ -20,7 +20,7 @@ class Model_chat extends CI_Model {
     //ini method yang berfungsi untuk mengambil data chat
     public function get()
     {
-        $this->db->select('tb_users.nama, tb_chat.id_chat, tb_chat.admin, tb_chat.user');
+        $this->db->select('tb_users.nama, tb_chat.id_chat, tb_chat.admin, tb_chat.user, tb_chat.hapus_user, tb_chat.hapus_admin');
         $this->db->join('tb_users', 'tb_chat.admin = tb_users.id_user');
         $this->db->join('tb_isi_chat', 'tb_chat.id_chat = tb_isi_chat.id_chat', 'left');
         //ini adalah data chat antara user dan admin
@@ -29,13 +29,41 @@ class Model_chat extends CI_Model {
             'user'  => $this->user
         ])->row_array();
 
+        switch ($this->session->role_id) {
+            case '1':
+                $syarat_chat    = [
+                    'tb_isi_chat.id_chat'    => $data['id_chat'],
+                    'hapus_admin'            => 0
+                ];
+                break;
+            case '2':
+                //untuk menampilkan kembali data chat yang pernah dihapus sebelumnya
+                if ($data['hapus_user'] == 1) {
+                    $this->db->where('id_chat', $data['id_chat']);
+                    $this->db->update('tb_chat', [
+                        'hapus_user'    => 0
+                    ]);
+                }
+                $syarat_chat    = [
+                    'tb_isi_chat.id_chat'    => $data['id_chat'],
+                    'hapus_user'             => 0
+                ];
+                break;
+            case '3':
+                $syarat_chat    = [
+                    'tb_isi_chat.id_chat'   => $data['id_chat']
+                ];
+                break;
+            
+            default:
+                # code...
+                break;
+        }
         //kemudian data chat diatas akan ditambah data isi chat dari setiap data chat yang akan ditampilkan
         $this->db->select('tb_isi_chat.*, tb_penerima.nama as nama_penerima, tb_penerima.role_id as role_penerima, tb_pengirim.nama as nama_pengirim, tb_pengirim.role_id as role_pengirim');
         $this->db->join('tb_users as tb_penerima', 'tb_isi_chat.penerima = tb_penerima.id_user');
         $this->db->join('tb_users as tb_pengirim', 'tb_isi_chat.pengirim = tb_pengirim.id_user');
-        $data['isi_chat']   = $this->db->get_where('tb_isi_chat', [
-            'id_chat'   => $data['id_chat']
-        ])->result_array();
+        $data['isi_chat']   = $this->db->get_where('tb_isi_chat', $syarat_chat)->result_array();
         return $data;
     }
 
@@ -128,5 +156,6 @@ class Model_chat extends CI_Model {
         //mengupdate data pada tb_chat
         $this->db->where('id_chat', $this->id_chat);
         $this->db->update('tb_chat', $data);
+        $this->db->update('tb_isi_chat', $data);
     }
 }
