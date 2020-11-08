@@ -73,7 +73,7 @@
 
         public function detail($id_brg)
         {
-            // mengambil id
+            // mengambil data barang yang akan ditampilkan
             $data['brg'] = $this->model_barang->detail_brg($id_brg);
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');

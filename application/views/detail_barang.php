@@ -57,10 +57,13 @@
                                             <th scope="row">Rating</th>
                                             <td>
                                                 <?php
+                                                    //menampilkan nilai rating yang sudah dihitung tadi
                                                     for ($i=0; $i < 5; $i++) { 
+                                                        //jika nilai variabel $i masih kurang dari jumlah rating, maka sistem akan menampilkan bintang berwarna kuning
                                                         if ($brg['rating'] > $i) { ?>
                                                             <span class="fa fa-star checked"></span>
                                                         <?php } else { ?>
+                                                            <!-- jika nilai $i sudah melebihi nilai rating, maka akan menampilkan bintang kosong atau bintang berwarna hitam -->
                                                             <span class="fa fa-star"></span>
                                                         <?php }
                                                     }
@@ -68,6 +71,7 @@
                                             </td>
                                         </tr>
                                         <?php 
+                                            //cek apakah user sudah login atau belum, jika sudah maka akan tampil form untuk memberikan rating
                                             if ($this->session->role_id) { ?>
                                                 <tr>
                                                     <th scope="row">Berikan Ulasan</th>

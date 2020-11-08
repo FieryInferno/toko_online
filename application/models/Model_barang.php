@@ -57,22 +57,31 @@
             }
         }
 
+        //method untuk mengambil data barang
         public function detail_brg($id_brg)
         {
+            //mengambil data barang berdasarkan id_brg
             $result = $this->db->get_where('tb_barang', [
                 'id_brg'    => $id_brg
             ])->row_array();
+            //jika data barang ada, maka akan dilakukan proses penghitungan rating
             if($result){
+                //mengambil data rating di tb_rating
                 $rating = $this->db->get_where('tb_rating', [
                     'id_brg'    => $id_brg
                 ])->result_array();
+                //mengecek apakah data rating ada atau tidak
                 if ($rating) {
+                    //jika data rating ada, maka akan dilakukan perhitungan rating
                     $totalRating    = 0;
                     foreach ($rating as $key) {
+                        //menghitung total rating dari barang
                         $totalRating    += (integer) $key['rating'];
                     }
+                    //kemudian membaginya dengan jumlah rating untuk menghasilkan nilai rating
                     $result['rating']   = $totalRating/count($rating);
                 } else {
+                    //jika tidak ada data rating, maka nilai rating akan diset 0
                     $result['rating']   = 0;
                 }
                 return $result;
@@ -87,6 +96,7 @@
             $this->$jenis   = $isi;
         }
 
+        //method yang berfungsi untuk menambah rating
         public function tambahRating()
         {
             $this->db->insert('tb_rating', [
