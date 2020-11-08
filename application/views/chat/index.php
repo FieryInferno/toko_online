@@ -8,7 +8,7 @@
                         # code...
                         break;
                     case '2': ?>
-                        <div class="col-6">
+                        <!-- <div class="col-6">
                             <form action="<?= base_url(); ?>Chat/isi" method="post">
                                 <div class="input-group">
                                     <select class="form-control" id="exampleFormControlSelect1" name="admin">
@@ -23,7 +23,7 @@
                                     </span>
                                 </div>
                             </form>
-                        </div>
+                        </div> -->
                         <?php break;
                     
                     default:
@@ -36,10 +36,16 @@
             <div class="card-title">
                 <h3>Daftar Chat</h3>
             </div>
+            <?php
+                if (isset($this->session->berhasil_hapus)) {
+                    echo $this->session->berhasil_hapus;
+                }
+            ?>
             <ul class="list-unstyled">
                 <?php
+                    //Untuk menampilkan chat
                     foreach ($penerima as $key) { ?>
-                        <li class="media my-4">
+                        <li class="media my-4 border-top border-bottom">
                             <img class="mr-3" src="https://via.placeholder.com/150" alt="Generic placeholder image">
                             <div class="media-body">
                                 <?php
@@ -61,6 +67,8 @@
                                     echo $key['chat_terakhir']['isi']; 
                                 ?>
                             </div>
+                            <!-- Tombol untuk menghapus chat -->
+                            <a href="<?= base_url('chat/delete/' . $key['id_chat'] . '/' . $this->session->id_user); ?>" class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</a>
                         </li>
                     <?php }
                 ?>

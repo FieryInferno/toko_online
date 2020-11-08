@@ -21,8 +21,9 @@
                                     <div class="col-10">
                                         <h6 class="m-0 font-weight-bold text-primary">DETAIL KERANJANG</h6>
                                     </div>
+                                    <!-- Tombol chat yang akan mengarah langsung ke halaman chat dengan admin -->
                                     <div class="col-2">
-                                        <a class="btn btn-warning" href="<?php echo base_url('chat')?>">
+                                        <a class="btn btn-warning" href="<?php echo base_url('chat/isi/' . $brg['admin'])?>">
                                             <i class="fas fa-comments"></i><span> Chat Sekarang</span>
                                         </a>
                                     </div>

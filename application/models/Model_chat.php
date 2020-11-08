@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Model_chat extends CI_Model {
 
+    //ini variable yang dimiliki oleh model chat
     private $admin;
     private $user;
     private $id_chat;
@@ -10,20 +11,25 @@ class Model_chat extends CI_Model {
     private $pengirim;
     private $isi;
 
+    //method yang berfungsi untuk mengisi variabel yang dimiliki oleh model chat
 	public function set($jenis, $isi)
     {
         $this->$jenis   = $isi;
     }
 
+    //ini method yang berfungsi untuk mengambil data chat
     public function get()
     {
         $this->db->select('tb_users.nama, tb_chat.id_chat, tb_chat.admin, tb_chat.user');
         $this->db->join('tb_users', 'tb_chat.admin = tb_users.id_user');
         $this->db->join('tb_isi_chat', 'tb_chat.id_chat = tb_isi_chat.id_chat', 'left');
+        //ini adalah data chat antara user dan admin
         $data   = $this->db->get_where('tb_chat', [
             'admin' => $this->admin,
             'user'  => $this->user
         ])->row_array();
+
+        //kemudian data chat diatas akan ditambah data isi chat dari setiap data chat yang akan ditampilkan
         $this->db->select('tb_isi_chat.*, tb_penerima.nama as nama_penerima, tb_penerima.role_id as role_penerima, tb_pengirim.nama as nama_pengirim, tb_pengirim.role_id as role_pengirim');
         $this->db->join('tb_users as tb_penerima', 'tb_isi_chat.penerima = tb_penerima.id_user');
         $this->db->join('tb_users as tb_pengirim', 'tb_isi_chat.pengirim = tb_pengirim.id_user');
@@ -62,15 +68,18 @@ class Model_chat extends CI_Model {
 
     public function get_penerima()
     {
+        //mengecek role_id user
         switch ($this->session->role_id) {
             case '1':
                 $role_id    = [
-                    'admin'  => $this->session->id_user,
+                    'admin'         => $this->session->id_user,
+                    'hapus_admin'   => 0
                 ];
                 break;
             case '2':
                 $role_id    = [
-                    'user'  => $this->session->id_user
+                    'user'          => $this->session->id_user,
+                    'hapus_user'    => 0
                 ];
                 break;
             
@@ -94,5 +103,30 @@ class Model_chat extends CI_Model {
             ])->row_array();
         }
         return $data;
+    }
+
+    //method untuk menghapus chat berdasarkan role
+    public function delete($role)
+    {
+        //mengecek role
+        switch ($role) {
+            case 'admin':
+                $data   = [
+                    'hapus_admin'   => '1'
+                ];
+                break;
+            case 'user':
+                $data   = [
+                    'hapus_user'   => '1'
+                ];
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+        //mengupdate data pada tb_chat
+        $this->db->where('id_chat', $this->id_chat);
+        $this->db->update('tb_chat', $data);
     }
 }

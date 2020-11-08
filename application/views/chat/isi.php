@@ -5,10 +5,15 @@
         </div>
         <div class="card-body">
             <?php
-                foreach ($isi['isi_chat'] as $isi_chat) { 
+                //ini adalah proses menampilkan isi chat
+                foreach ($isi['isi_chat'] as $isi_chat) {
+                    //kemudian akan dicek role id dari setiap user yang login
                     switch ($this->session->role_id) {
+                        //jika rolenya adalah owner, maka akan chat admin akan ditampilkan disebelah kanan, dan user di sebelah kiri dengan warna yang berbeda
                         case '3':
+                            //ini adalah pengecekan apakah chat dikirim oleh admin atau user
                             if ($isi_chat['role_pengirim'] == '1') { ?>
+                                <!-- jika dikirim admin, maka akan ditampilkan di sebelah kanan dengan warna hijau -->
                                 <div class="row">
                                     <div class="col-6"></div>
                                     <div class="col-6">
@@ -20,6 +25,7 @@
                                     </div>
                                 </div>
                             <?php } else { ?> 
+                                <!-- jika dikirim user, maka akan ditampilkan di sebelah kiri dengan warna abu-abu -->
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="alert alert-secondary" role="alert">
@@ -34,8 +40,11 @@
                             <?php }
                             break;
                         
+                        //jika rolenya adalah admin atau user
                         default:
+                            //melakukan pengecekan apakah pengirim chat rolenya sama dengan role yang sedang login
                             if ($isi_chat['pengirim'] == $this->session->id_user) { ?>
+                                <!-- jika sama, maka akan isi chat akan ditampilkan di sebelah kanan -->
                                 <div class="row">
                                     <div class="col-6"></div>
                                     <div class="col-6">
@@ -45,6 +54,7 @@
                                     </div>
                                 </div>
                             <?php } else { ?> 
+                                <!-- jika tidak, maka akan isi chat akan ditampilkan di sebelah kiri -->
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="alert alert-secondary" role="alert">
@@ -62,6 +72,7 @@
         </div>
         <div class="card-footer">
             <?php 
+                //disini akan dilakukan pengecekan kembali apakah rolenya owner atau bukan, jika rolenya owner maka dia tidak bisa mengirim pesan
                 if ($this->session->role_id !== '3') { ?>
                     <form action="<?= base_url(); ?>Chat/kirim" method="post" id="form_kirim_chat">
                         <div class="input-group">
