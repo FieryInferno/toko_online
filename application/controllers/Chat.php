@@ -9,6 +9,7 @@ class Chat extends CI_Controller {
     private $penerima;
     private $pengirim;
     private $isi;
+    private $id_isi_chat;
 
     public function __construct() {
         parent::__construct();
@@ -36,12 +37,12 @@ class Chat extends CI_Controller {
                     # code...
                     break;
             }
-            $this->id_chat  = $this->input->post('id_chat');
-            $this->penerima = $this->input->post('penerima');
-            $this->pengirim = $this->input->post('pengirim');
-            $this->isi      = $this->input->post('isi');# code...
+            $this->id_chat      = $this->input->post('id_chat');
+            $this->penerima     = $this->input->post('penerima');
+            $this->pengirim     = $this->input->post('pengirim');
+            $this->isi          = $this->input->post('isi');
+            $this->id_isi_chat  = $this->input->post('id_isi_chat');
         }
-        
     }
 
 	public function index()
@@ -147,5 +148,12 @@ class Chat extends CI_Controller {
             </div>'
         );
         redirect('chat');
+    }
+
+    public function hapus_isi_chat($id)
+    {
+        $this->Model_chat->set('id_isi_chat', $this->id_isi_chat);
+        $this->Model_chat->hapus_isi_chat();
+        redirect('Chat/isi/' . $id);
     }
 }

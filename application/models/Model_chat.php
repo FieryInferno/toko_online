@@ -10,6 +10,7 @@ class Model_chat extends CI_Model {
     private $penerima;
     private $pengirim;
     private $isi;
+    private $id_isi_chat;
 
     //method yang berfungsi untuk mengisi variabel yang dimiliki oleh model chat
 	public function set($jenis, $isi)
@@ -156,6 +157,28 @@ class Model_chat extends CI_Model {
         //mengupdate data pada tb_chat
         $this->db->where('id_chat', $this->id_chat);
         $this->db->update('tb_chat', $data);
+        $this->db->update('tb_isi_chat', $data);
+    }
+
+    public function hapus_isi_chat()
+    {
+        switch ($this->session->role_id) {
+            case '1':
+                $data   = [
+                    'hapus_admin'   => '1'
+                ];
+                break;
+            case '2':
+                $data   = [
+                    'hapus_user'    => '1'
+                ];
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+        $this->db->where('id_isi_chat', $this->id_isi_chat);
         $this->db->update('tb_isi_chat', $data);
     }
 }
